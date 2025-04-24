@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Avengers:Dooms day 2",
+    "releaseDate": "25.11.2030",
+    "starRating": 10,
+    "rating": 18
+  },
+  {
+    "name": "Avengers:Dooms day 3",
+    "releaseDate": "25.11.2040",
+    "starRating": 10,
+    "rating": 17
+  },
+  {
+    "name": "Avengers:Dooms day 4",
+    "releaseDate": "25.11.2045",
+    "starRating": 10,
+    "rating": 17
+  },
+  {
+    "name": "Avengers:Dooms day 5",
+    "releaseDate": "25.11.2050",
+    "starRating": 10,
+    "rating": 17
+  }
+]

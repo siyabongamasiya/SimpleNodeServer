@@ -1,54 +1,61 @@
 import http from 'node:http';
+import express from 'express'
 import { Movie,Series,Song } from './Models.js';
+import { getAllMovies,getMovieByName,deleteMovieByName,updateMovie,postMovie } from './Repository.js';
 
 const hostname = "127.0.0.1"
 const port = 3000
+const app = express()
+
+app.use(express.json())
 
 //database
-const moviesList = [new Movie("Avengers","25.11.2012",10,13),new Movie("Avengers:Dooms day","25.11.2025",10,13)]
-const seriesList = [new Series("Loki",2,9,13),new Series("She hulk",1,9,13),new Series("Batman",3,9,13)]
-const songsList = [new Song("Versace","Migos","Hip hop",200000,new Song("Taylor Port Junkie","Rylo Rodriguez","Hip hop",1000000))]
+let seriesList = [new Series("Loki",2,9,13),new Series("She hulk",1,9,13),new Series("Batman",3,9,13)]
+let songsList = [new Song("Versace","Migos","Hip hop",200000,new Song("Taylor Port Junkie","Rylo Rodriguez","Hip hop",1000000))]
 
 //endpoints
 const movies = "/Movies"
+const moviesById = "/Movies/:name"
 const series = "/Series"
+const seriesById = "/Series/:name"
 const songs = "/Songs"
+const songsById = "/Songs/:name"
 
-const server = http.createServer((req,res) => {
-    try{
-        if(req.url === movies){
-            handleMoviesEndpoint(req,res)
-        }else if(req.url === series){
-            handleSeriesEndpoint(req,res)
-        }else if(req.url === songs){
-            handleSongsEndpoint(req,res)
-        }else{
-            res.statusCode = 404
-            res.end()
-        }
-    }catch(e){
-        res.statusCode = 500
-        res.end()
-    }
+handleMoviesEndpoint()
+
+function handleMoviesEndpoint(){
+    app.get(movies,async (req,res)=>{
+        let movieName = req.query.name
+        console.log(movieName)
+        let foundMovie = await getMovieByName(movieName)
+        res.send(JSON.parse(JSON.stringify({foundMovie})))
+    })
+
+    app.get(movies,async (req,res)=>{
+        let movies = await getAllMovies()
+        res.send(JSON.parse(JSON.stringify({movies})))
+    })
+
+    app.put(movies,async (req,res) => {
+        let jsonobject = req.body
+        updateMovie(new Movie(jsonobject.name,jsonobject.releaseDate,jsonobject.starRating,jsonobject.rating))
+        let movies = await getAllMovies()
+        res.send(JSON.parse(JSON.stringify({movies})))
+    })
+
+    app.post(movies,async (req,res) => {
+        let jsonobject = req.body
+        await postMovie(new Movie(jsonobject.name,jsonobject.releaseDate,jsonobject.starRating,jsonobject.rating))
+        let movies = await getAllMovies()
+        res.send(JSON.parse(JSON.stringify({movies})))
+    })
     
-})
-
-function handleMoviesEndpoint(req,res){
-    if(req.method === "GET"){
-        res.statusCode = 200
-        res.setHeader("content-type","application/json")
-        res.end(JSON.stringify({moviesList}))
-    }else if(req.method === "POST" || req.method === "PUT"){
-        res.statusCode = 200
-        res.setHeader("content-type","application/json")
-        moviesList.push(new Movie("Doctor Strange","11.11.2018",9,13))
-        res.end(JSON.stringify({moviesList}))
-    }else if(req.method === "DELETE"){
-        res.statusCode = 200
-        res.setHeader("content-type","application/json")
-        moviesList.pop()
-        res.end(JSON.stringify({moviesList}))
-    }
+    app.delete(moviesById,async (req,res) => {
+        let movieName = req.params.name
+        await deleteMovieByName(movieName)
+        let movies = await getAllMovies()
+        res.send(JSON.parse(JSON.stringify({movies})))
+    })
 }
 
 function handleSeriesEndpoint(req,res){
@@ -86,6 +93,8 @@ function handleSongsEndpoint(req,res){
         res.end(JSON.stringify({songsList}))
     }
 }
-server.listen(port,hostname,() => {
-    console.log("server running!!")
+
+
+app.listen(port,() => {
+    console.log("listening!!")
 })
