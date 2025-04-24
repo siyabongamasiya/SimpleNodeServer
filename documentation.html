@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Media API Documentation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background: #f9f9f9;
+      color: #333;
+    }
+    h1, h2 {
+      color: #444;
+    }
+    code {
+      background: #eee;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    section {
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Media API Documentation</h1>
+  <p>This API allows you to manage a collection of Movies, Series, and Songs stored in a JSON file.</p>
+
+  <section>
+    <h2>Movies</h2>
+    <ul>
+      <li><strong>GET /Movies</strong> - Get all movies or query with <code>?name=MovieName</code> to get one.</li>
+      <li><strong>POST /Movies</strong> - Add a new movie. Send JSON:
+        <pre>{
+  "name": "Inception",
+  "releaseDate": "2010",
+  "starRating": 9,
+  "rating": 13
+}</pre>
+      </li>
+      <li><strong>PUT /Movies</strong> - Update an existing movie (by name).</li>
+      <li><strong>DELETE /Movies/:name</strong> - Delete a movie by name.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Series</h2>
+    <ul>
+      <li><strong>GET /Series</strong> - Get all series or query with <code>?name=SeriesName</code>.</li>
+      <li><strong>POST /Series</strong> - Add a new series. JSON format:
+        <pre>{
+  "name": "Breaking Bad",
+  "season": "5",
+  "starRating": 10,
+  "rating": 18
+}</pre>
+      </li>
+      <li><strong>PUT /Series</strong> - Update an existing series (by name).</li>
+      <li><strong>DELETE /Series/:name</strong> - Delete a series by name.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Songs</h2>
+    <ul>
+      <li><strong>GET /Songs</strong> - Get all songs or query with <code>?name=SongName</code>.</li>
+      <li><strong>POST /Songs</strong> - Add a new song. JSON format:
+        <pre>{
+  "name": "Water",
+  "artist": "Tyla",
+  "genre": "Amapiano",
+  "noOfStreams": 3000000
+}</pre>
+      </li>
+      <li><strong>PUT /Songs</strong> - Update an existing song (by name).</li>
+      <li><strong>DELETE /Songs/:name</strong> - Delete a song by name.</li>
+    </ul>
+  </section>
+</body>
+</html>

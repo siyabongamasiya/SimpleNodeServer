@@ -1,26 +1,50 @@
-[
-  {
-    "name": "Avengers:Dooms day 2",
-    "releaseDate": "25.11.2030",
-    "starRating": 10,
-    "rating": 18
-  },
-  {
-    "name": "Avengers:Dooms day 3",
-    "releaseDate": "25.11.2040",
-    "starRating": 10,
-    "rating": 17
-  },
-  {
-    "name": "Avengers:Dooms day 4",
-    "releaseDate": "25.11.2045",
-    "starRating": 10,
-    "rating": 17
-  },
-  {
-    "name": "Avengers:Dooms day 5",
-    "releaseDate": "25.11.2050",
-    "starRating": 10,
-    "rating": 17
-  }
-]
+{
+  "movies": [
+    {
+      "name": "Avengers:Dooms day 5",
+      "releaseDate": "25.11.2050",
+      "starRating": 10,
+      "rating": 17
+    },
+    {
+      "name": "Avengers:Dooms day 4",
+      "releaseDate": "25.11.2050",
+      "starRating": 10,
+      "rating": 16
+    },
+    {
+      "name": "Avengers:Dooms day 3",
+      "releaseDate": "25.11.2050",
+      "starRating": 10,
+      "rating": 16
+    }
+  ],
+  "series": [
+    {
+      "name": "Mkhokha",
+      "season": 2,
+      "starRating": 10,
+      "rating": 16
+    },
+    {
+      "name": "isibaya",
+      "season": 1,
+      "starRating": 8,
+      "rating": 16
+    }
+  ],
+  "songs": [
+    {
+      "name": "shaykah",
+      "artist": "tyla",
+      "genre": "pop",
+      "noOfStreams": 3000000
+    },
+    {
+      "name": "versace",
+      "artist": "migos",
+      "genre": "hip-hop",
+      "noOfStreams": 5000000
+    }
+  ]
+}
